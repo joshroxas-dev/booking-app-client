@@ -31,7 +31,6 @@ const Home = () => {
     }, [])
 
     useEffect(() => {
-      console.log("search term", searchTerm)
       if (searchTerm !== "") {
           setTimeout(() => {
               setData(allData.filter(data => data.name.toLowerCase().includes(searchTerm.toLowerCase())))
@@ -42,7 +41,7 @@ const Home = () => {
               setData(allData);
           }, 1000)
       }
-    }, [searchTerm])
+    }, [searchTerm, allData])
 
   return (
     <>
