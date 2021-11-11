@@ -13,20 +13,6 @@ const Home = () => {
 
     const [ loader, setLoader ] = useState(false);
 
-    const search = () => {
-        console.log("search term", searchTerm)
-        if (searchTerm !== "") {
-            setTimeout(() => {
-                setData(allData.filter(data => data.name.toLowerCase().includes(searchTerm.toLowerCase())))
-            }, 1000)
-        } else {
-            console.log("Blank")
-            setTimeout(() => {
-                setData(allData);
-            }, 1000)
-        }
-    }
-
     const getUnits = async () => {
         setLoader(true);
         try {
@@ -41,12 +27,21 @@ const Home = () => {
     }
 
     useEffect(() => {
-        // setData(dataDummy);
         getUnits();
     }, [])
 
     useEffect(() => {
-        search();
+      console.log("search term", searchTerm)
+      if (searchTerm !== "") {
+          setTimeout(() => {
+              setData(allData.filter(data => data.name.toLowerCase().includes(searchTerm.toLowerCase())))
+          }, 1000)
+      } else {
+          console.log("Blank")
+          setTimeout(() => {
+              setData(allData);
+          }, 1000)
+      }
     }, [searchTerm])
 
   return (
